@@ -63,11 +63,11 @@
   "scripts": {
     "prestart": "npm run build",
     "start": "cd build && node server.js",
-    "lint": "eslint src gulpfile.babel.js webpack.config.js && csscomb src/components --lint",
-    "comb": "csscomb src/components --verbose",
-    "test": "eslint src && jest",
-    "build": "gulp build",
-    "serve": "gulp serve",
-    "sync": "gulp sync"
+    "lint": "./node_modules/.bin/eslint src gulpfile.babel.js webpack.config.js && csscomb src/components --lint",
+    "comb": "./node_modules/.bin/csscomb src/components --verbose",
+    "test": "./node_modules/.bin/gulp src && jest",
+    "build": "./node_modules/.bin/gulp build",
+    "serve": "./node_modules/.bin/gul pserve",
+    "sync": "./node_modules/.bin/gulp sync"
   }
 }
