@@ -8,6 +8,29 @@ class Rankinglist extends React.Component {
 
   constructor() {
     super();
+    this.state = {
+      ranking: [{
+        place: 1,
+        name: 'Sindre Øye Svendby',
+        points: 237
+      },
+        {
+          place: 2,
+          name: 'Håkon Tveitan',
+          points: 236
+        },
+        {
+          place: 2,
+          name: 'Stian Hagen',
+          points: 230
+        },
+        {
+          place: 4,
+          name: 'Johan Wathne',
+          points: 142
+        }
+      ]
+    };
   }
 
   render() {
