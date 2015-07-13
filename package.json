@@ -61,7 +61,7 @@
     ]
   },
   "scripts": {
-    "prestart": "npm run build",
+    "prestart": "./node_modules/.bin/gulp build",
     "start": "cd build && node server.js",
     "lint": "./node_modules/.bin/eslint src gulpfile.babel.js webpack.config.js && csscomb src/components --lint",
     "comb": "./node_modules/.bin/csscomb src/components --verbose",
