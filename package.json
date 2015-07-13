@@ -16,6 +16,7 @@
     "lodash": "3.9.3",
     "normalize.css": "3.0.3",
     "react": "0.13.3",
+    "react-bootstrap": "0.23.7",
     "source-map-support": "0.3.1",
     "superagent": "1.2.0"
   },
@@ -60,7 +61,8 @@
     ]
   },
   "scripts": {
-    "start": "node server.js",
+    "prestart": "npm run build",
+    "start": "cd build && node server.js",
     "lint": "eslint src gulpfile.babel.js webpack.config.js && csscomb src/components --lint",
     "comb": "csscomb src/components --verbose",
     "test": "eslint src && jest",

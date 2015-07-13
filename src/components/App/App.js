@@ -1,81 +1,42 @@
-/*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
-
-import React, { PropTypes } from 'react';
+import React from 'react';
 import styles from './App.less';
 import withContext from '../../decorators/withContext';
 import withStyles from '../../decorators/withStyles';
-import AppActions from '../../actions/AppActions';
-import AppStore from '../../stores/AppStore';
-import Header from '../Header';
-import ContentPage from '../ContentPage';
-import ContactPage from '../ContactPage';
-import LoginPage from '../LoginPage';
-import RegisterPage from '../RegisterPage';
-import NotFoundPage from '../NotFoundPage';
-import Feedback from '../Feedback';
-import Footer from '../Footer';
-
-const pages = { ContentPage, ContactPage, LoginPage, RegisterPage, NotFoundPage };
+import Rankinglist from '../Rankinglist/Rankinglist';
 
 @withContext
 @withStyles(styles)
 class App {
 
-  static propTypes = {
-    path: PropTypes.string.isRequired
-  };
-
-  componentDidMount() {
-    window.addEventListener('popstate', this.handlePopState);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('popstate', this.handlePopState);
-  }
-
-  shouldComponentUpdate(nextProps) {
-    return this.props.path !== nextProps.path;
-  }
-
   render() {
-    let component;
-
-    switch (this.props.path) {
-
-      case '/':
-      case '/about':
-      case '/privacy':
-        let page = AppStore.getPage(this.props.path);
-        component = React.createElement(pages[page.component], page);
-        break;
-
-      case '/contact':
-        component = <ContactPage />;
-        break;
-
-      case '/login':
-        component = <LoginPage />;
-        break;
-
-      case '/register':
-        component = <RegisterPage />;
-        break;
-    }
-
-    return component ? (
-      <div>
-        <Header />
-        {component}
-        <Feedback />
-        <Footer />
+    return (
+      <div id="app">
+        <div className="panel panel-primary">
+          <div className="panel-heading">
+            <h3 className="panel-title">Norges Tour</h3>
+          </div>
+          <div id="main-wrapper">
+            <nav className="sidebar-left" id="left-menu">
+                <ul className="nav nav-pills nav-stacked">
+                <li role="presentation" className="active"><a href="#">
+                  <span className="glyphicon glyphicon-stats" aria-hidden="true"></span> Rankinglister</a>
+                </li>
+                <li role="presentation" className="disabled"><a href="#">
+                  <span className="glyphicon glyphicon-bullhorn" aria-hidden="true"></span> Resultater</a>
+                </li>
+                <li role="presentation" className="disabled"><a href="#">
+                  <span className="glyphicon glyphicon-align-justify" aria-hidden="true"></span> Turneringer</a>
+                </li>
+              </ul>
+            </nav>
+            <main>
+              <Rankinglist />
+            </main>
+          </div>
+        </div>
       </div>
-    ) : <NotFoundPage />;
+    );
   }
-
-  handlePopState(event) {
-    AppActions.navigateTo(window.location.pathname, {replace: !!event.state});
-  }
-
 }
 
 export default App;

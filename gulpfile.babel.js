@@ -152,7 +152,7 @@ gulp.task('sync', ['serve'], cb => {
     https: false,
     // Informs browser-sync to proxy our Express app which would run
     // at the following location
-    proxy: 'localhost:5000'
+      proxy: 'localhost:' + (process.env.PORT || 5000)
   }, cb);
 
   process.on('exit', () => browserSync.exit());
@@ -162,15 +162,6 @@ gulp.task('sync', ['serve'], cb => {
   ), file => {
     browserSync.reload(path.relative(__dirname, file.path));
   });
-});
-
-// Deploy via Git
-gulp.task('deploy', cb => {
-  const push = require('git-push');
-  const remote = argv.production ?
-    'https://github.com/{user}/{repo}.git' :
-    'https://github.com/{user}/{repo}-test.git';
-  push('./build', remote, cb);
 });
 
 // Run PageSpeed Insights

@@ -1,29 +1,16 @@
-/*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
-
 import { Router } from 'express';
-import db from '../core/Database';
+import superagent from 'superagent';
 
 const router = new Router();
+const api = process.env.API;
 
-router.get('/', async (req, res, next) => {
-  try {
-    let path = req.query.path;
-
-    if (!path) {
-      res.status(400).send({error: `The 'path' query parameter cannot be empty.`});
+router.get('/rankinglist/men/', (req, res) => {
+  superagent.get(api + '/fake/woman/', function(err, response) {
+    if (err) {
+      return res.json({'error': err});
     }
-
-    let page = await db.getPage(path);
-
-    if (page) {
-      res.status(200).send(page);
-    } else {
-      res.status(404).send({error: `The page '${path}' is not found.`});
-    }
-  } catch (err) {
-    next(err);
-  }
+    return res.send(response.body);
+  });
 });
 
 export default router;
-
