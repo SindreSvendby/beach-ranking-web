@@ -4,36 +4,18 @@
 ###Based on 
 Based on React Starter Kit, to understand the technical setup and architextur See [React Starter Kit](reactstarterkit.com)
 
-### How to Build
-
-```shell
-$ gulp build                    # or, `gulp build --release`
-```
-
-By default, it builds in debug mode. If you need to build in release mode, add
-`--release` flag.
-
 ### How to Run
 
 need to set API env. var
 
 ```shell
-$ API=localhost:3004 gulp                          # or, `gulp --release`
+$ API=localhost:3000 gulp
 ```
 
 This will start a lightweight development server with LiveReload and
 synchronized browsing across multiple devices and browsers.
 
-### How to Deploy
-
-```shell
-$ gulp deploy                   # or, `gulp deploy --production`
-```
-
-
 For more information see `deploy` task in `gulpfile.js`.
-
-
 
 ### Copyright
 

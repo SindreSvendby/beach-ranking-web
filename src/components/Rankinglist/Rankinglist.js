@@ -14,11 +14,13 @@ class Rankinglist extends React.Component {
   }
 
   componentDidMount() {
+    console.log('componentDidMount');
     this.loadPlayers();
   }
 
   loadPlayers(gender = 'men', year = 2015) {
-    superagent.get( 'http://localhost:5000' + '/api/rankinglist/' + year + '/' + gender, 
+    console.log(gender, year);
+    superagent.get( 'http://localhost:5000' + '/api/rankinglist/' + year + '/' + gender,
       (err, res) => {
         if(err) {
           console.log(err);
@@ -29,8 +31,10 @@ class Rankinglist extends React.Component {
       });
   }
 
- handleClick(gender, year) {
-   this.loadPlayers(gender, year)
+  handleClick(gender, year) {
+    return () => {
+      this.loadPlayers(gender, year);
+    };
   }
 
   render() {
